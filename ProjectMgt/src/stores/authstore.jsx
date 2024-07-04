@@ -3,7 +3,7 @@ import axios from 'axios';
 import { create } from 'zustand';
 
 const authStore = create((set) => ({
-  loggedIn: false, // Initialize loggedIn to false
+  loggedIn: null, // Initialize loggedIn to false
   userData: null,
 
   loginForm: {
@@ -24,7 +24,7 @@ const authStore = create((set) => ({
   login: async () => {
     try {
       const { loginForm } = authStore.getState();
-      const res = await axios.post('http://localhost:3000/auth/login', loginForm);
+      const res = await axios.post('/auth/login', loginForm);
       
       localStorage.setItem('userData', JSON.stringify(res.data.user));
       set({
@@ -42,7 +42,7 @@ const authStore = create((set) => ({
 
   logout: async () => {
     try {
-        const promise = axios.post('http://localhost:3000/auth/logout')
+        const promise = axios.post('/auth/logout')
            
     
 
@@ -53,12 +53,23 @@ const authStore = create((set) => ({
         // Update state after successful logout
         set({ loggedIn: false });
 
-        console.log("Logged out Successfully")
+    
 
     } catch (error) {
         console.log(error);
     }
-}
+},
+
+checkAuth: async () => {
+  try {
+      await axios.get('/auth/checkAuth')
+      set({loggedIn: true})  
+  } catch (error) {
+      set({loggedIn: false})
+      console.log(error);
+  }
+},
+
 }));
 
 export default authStore;

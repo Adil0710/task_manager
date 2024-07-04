@@ -17,6 +17,7 @@ import HomePage from './Pages/HomePage'
 import ThemeToggle from './component/ThemeToggle'
 import { useTheme } from './context/ThemeProvider'
 import authStore from './stores/authstore';
+import RequireAuth from './component/RequireAuth';
 
 function App() {
 
@@ -36,6 +37,10 @@ function App() {
         <ConfigProvider
             theme={{
                 algorithm: isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
+                token: {
+                  // Seed Token
+                  colorPrimary: '#6F56EC',
+                },
             }}
         >
           {/* <Layout>
@@ -93,7 +98,7 @@ function App() {
         <BrowserRouter>
           <Routes>
           <Route index element={<HomePage /> } />
-          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/dashboard" element={<RequireAuth><DashboardPage /></RequireAuth>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LogoutPage />} />
           </Routes>
@@ -101,8 +106,8 @@ function App() {
 
         </ConfigProvider>
     
-
-    <ThemeToggle/>
+{/* 
+    <ThemeToggle/> */}
     
     </div>
   )

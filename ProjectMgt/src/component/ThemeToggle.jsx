@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTheme } from '../context/ThemeProvider'; // Import the useTheme hook
-import { Button, Switch } from 'antd';
+import { Button, Switch, ConfigProvider, theme } from 'antd';
 import { SunFilled, MoonFilled } from '@ant-design/icons';
 
 function ThemeToggle() {
@@ -24,7 +24,13 @@ function ThemeToggle() {
     }, []); // Empty dependency array ensures it runs only once on mount
 
     return (
-        <Button onClick={toggleDarkMode}>{isDarkMode ? <MoonFilled/> : <SunFilled/>}</Button>
+        <ConfigProvider
+        theme={{
+          algorithm: isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
+        }}
+      >
+        <Button type='text' className='bg-gray-200 dark:bg-neutral-800' onClick={toggleDarkMode}>{isDarkMode ? <MoonFilled/>  : <SunFilled/>}</Button>
+        </ConfigProvider>
     );
 }
 

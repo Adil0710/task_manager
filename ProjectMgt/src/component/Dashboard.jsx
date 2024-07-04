@@ -5,7 +5,7 @@ function Dashboard() {
   return (
     <div>
 
-     dashboard <button ><Link to='/logout'>logout</Link></button>        
+     dashboard        
     </div>
   )
 }

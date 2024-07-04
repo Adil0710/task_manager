@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Checkbox, Form, Grid, Input, Typography, theme, ConfigProvider } from 'antd';
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { useTheme } from '../context/ThemeProvider';
+import ThemeToggle from './ThemeToggle';
+import logo from "../assets/logo.png"
+import { FaCloudBolt } from 'react-icons/fa6';
 
 
 function Loginform() {
@@ -11,7 +14,7 @@ function Loginform() {
     const navigate = useNavigate()
     const {isDarkMode} = useTheme()
     const [loading, setLoading] = useState(false); // State for loading
-
+  
     
     const handleLogin = async (e) => {
       setLoading(true)
@@ -36,6 +39,11 @@ function Loginform() {
             }}
         >
     <div className='w-full min-h-screen flex items-center justify-center flex-col lg:flex-row dark:bg-[#0b0b0b] bg-[#f3f4f6]'>
+      <div className='w-full absolute top-0 flex items-center justify-between px-1 py-1 sm:py-4 sm:px-5'>
+      <FaCloudBolt className="text-[#6F56EC] text-[40px]" />
+      <ThemeToggle />
+      </div>
+      
       <div className='w-full md:w-auto flex gap-0 md:gap-40 flex-col md:flex-row items-center justify-center'>
         {/* left side */}
         <div className='h-full w-full lg:w-2/3 flex flex-col items-center justify-center'>
@@ -43,7 +51,7 @@ function Loginform() {
             <span className='flex gap-1 py-1 px-3 border dark:border-[#292929] dark:text-white dark:text-opacity-80 rounded-full text-sm md:text-base border-gray-300 text-gray-600'>
               Manage all your task in one place!
             </span>
-            <p className='flex flex-col gap-0 md:gap-4 text-4xl md:text-6xl 2xl:text-7xl font-black text-center dark:text-blue-600 text-blue-700'>
+            <p className='flex flex-col gap-0 md:gap-4 text-4xl md:text-6xl 2xl:text-7xl font-black text-center text-[#6F56EC]'>
               <span>Cloud-Based</span>
               <span>Task Manager</span>
             </p>
@@ -60,7 +68,7 @@ function Loginform() {
             className='form-container w-full md:w-[400px] flex flex-col gap-y-8 bg-white dark:bg-[#141414] px-10 pt-14 pb-14'
           >
             <div className=''>
-              <p className='text-blue-600 dark:text-blue-500 text-3xl font-bold text-center'>
+              <p className='text-[#6F56EC] text-3xl font-bold text-center'>
                 Welcome back!
               </p>
               <p className='text-center text-base text-gray-700 dark:text-white dark:text-opacity-90 '>
